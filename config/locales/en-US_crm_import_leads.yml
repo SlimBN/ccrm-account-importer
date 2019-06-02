@@ -1,0 +1,5 @@
+en-US: 
+  csv_file: "CSV File"
+  gdrive_file: "Import from GDrive"
+  import_accounts: "Import Accounts"
+  msg_gdrive_error: "Error while importing: %{value}"

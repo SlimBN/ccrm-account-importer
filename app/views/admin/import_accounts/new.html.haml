@@ -1,0 +1,25 @@
+.remote
+  = form_for(:import, :url => admin_import_accounts_path, :html => { :multipart => true }) do |f|
+
+    %table
+      %tr
+        %td
+          .label.top #{t :assigned_to}:
+          = f.select :assigned_to, User.all.map { |u| [ u.name, u.id ] }.sort
+        %td
+          .label.top #{t :campaign}:
+          = f.select :campaign_id, Campaign.all.map { |c| [ c.name, c.id ] }, :include_blank => t(:select_none)
+        %td= spacer
+      %tr
+        %td
+          .label.top #{t :csv_file}:
+          = f.file_field :csv_file
+        %td
+          .label.top #{t :gdrive_file}:
+          = f.select :gdrive_file_id, @gdrive_files.collect{|x| [x[1], x[0]]}, :include_blank => t(:select_none)
+
+
+    .buttonbar
+      = f.submit t(:import_accounts)
+      #{t :or}
+      = link_to_cancel new_account_path
